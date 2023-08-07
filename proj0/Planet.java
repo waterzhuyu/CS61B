@@ -6,7 +6,7 @@ public class Planet {
     public double mass;
     public String imgFileName; /* The name of the file that correspond to the image that depicts the planet.*/
 
-    static final double GRAVITATIONAL = 6.67e-11;
+    private static final double GRAVITATIONAL = 6.67e-11;
 
     /*Constructor version 1. */
     public Planet(double xP, double yP, double xV, double yV, double m, String img) {
