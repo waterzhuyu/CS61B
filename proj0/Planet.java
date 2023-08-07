@@ -45,12 +45,12 @@ public class Planet {
     }
 
     public double calcForceExertedByX(Planet p) {
-        return this.calcForceExertedBy(p) * ((this.xxPos - p.xxPos) > 0 ? this.xxPos - p.xxPos : p.xxPos - this.xxPos)
+        return this.calcForceExertedBy(p) * (p.xxPos - this.xxPos)
                 / this.calcDistance(p);
     }
 
     public double calcForceExertedByY(Planet p) {
-        return this.calcForceExertedBy(p) * ((this.yyPos - p.yyPos) > 0 ? this.yyPos - p.yyPos : p.yyPos - this.yyPos)
+        return this.calcForceExertedBy(p) * (p.yyPos - this.yyPos)
                 / this.calcDistance(p);
     }
 
