@@ -63,6 +63,9 @@ public class ArrayDeque<T> {
         if ((double) size / items.length < ArrayDeque.FACTOR) {
             resize(items.length / 2);
         }
+        if (size == 0) {
+            return null;
+        }
         size--;
         T result = items[first];
         items[first] = null;
@@ -73,6 +76,9 @@ public class ArrayDeque<T> {
     public T removeLast() {
         if ((double) size / items.length < ArrayDeque.FACTOR) {
             resize(items.length / 2);
+        }
+        if (size == 0) {
+            return null;
         }
         size--;
         last = (last + items.length - 1) % items.length;
