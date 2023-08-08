@@ -22,7 +22,7 @@ public class ArrayDequeTest {
         while (dq2.size() < 100) {
             dq2.addLast(0.01);
         }
-        while (dq2.size() > 2) {
+        while (dq2.size() > 1) {
             dq2.removeFirst();
         }
         assertEquals(0.01, (double) dq2.removeLast(), 1e-7);

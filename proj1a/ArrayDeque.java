@@ -72,7 +72,7 @@ public class ArrayDeque<T> {
 
     public T removeLast() {
         if ((double) size / items.length < ArrayDeque.FACTOR) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         size--;
         last = (last + items.length - 1) % items.length;
