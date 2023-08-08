@@ -17,6 +17,15 @@ public class ArrayDequeTest {
         dq.addFirst(0);
         dq.addFirst(1);
         assertEquals(9, (int) dq.removeLast());
+
+        ArrayDeque<Double> dq2 = new ArrayDeque<>();
+        while (dq2.size() < 100) {
+            dq2.addLast(0.01);
+        }
+        while (dq2.size() > 2) {
+            dq2.removeFirst();
+        }
+        assertEquals(0.01, (double) dq2.removeLast(), 1e-7);
     }
 
     @Test
