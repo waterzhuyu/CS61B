@@ -100,6 +100,7 @@ public class LinkedListDeque<T> {
         Node<T> ptr = sentinel.next;
         while (index > 0) {
             ptr = ptr.next;
+            index--;
         }
         return ptr.item;
     }
@@ -111,7 +112,7 @@ public class LinkedListDeque<T> {
         return getRecursiveHelper(this.sentinel.next, index);
     }
 
-    public T getRecursiveHelper(Node<T> node, int index) {
+    private T getRecursiveHelper(Node<T> node, int index) {
         if (index == 0) {
             return node.item;
         } else {

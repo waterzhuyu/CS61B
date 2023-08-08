@@ -13,8 +13,14 @@ public class ArrayDeque<T> {
 
     private void resize(int capacity) {
         T[] newItems = (T[]) new Object[capacity];
-        System.arraycopy(items, 0, newItems, 0, size);
+
+        System.arraycopy(items, first, newItems, 0, items.length - first);
+        System.arraycopy(items, 0, newItems, items.length - first, first);
+
         items = newItems;
+
+        first = 0;
+        last = size;
     }
 
     public void addFirst(T item) {
@@ -31,8 +37,8 @@ public class ArrayDeque<T> {
             resize(size * 2);
         }
         size++;
-        last = (last + items.length + 1) % items.length;
         items[last] = item;
+        last = (last + items.length + 1) % items.length;;
     }
 
     public boolean isEmpty() {
@@ -44,13 +50,13 @@ public class ArrayDeque<T> {
     }
 
     public void printDeque() {
-        for (T t : items) {
-            System.out.print(t + " ");
+        for (int idx = first, cnt = 0; cnt < size; cnt++, idx = (idx + 1 + items.length) % items.length) {
+            System.out.print(items[idx] + " ");
         }
     }
 
     public T removeFirst() {
-        if (size / items.length < ArrayDeque.FACTOR) {
+        if ((double) size / items.length < ArrayDeque.FACTOR) {
             resize(size / 2);
         }
         size--;
@@ -60,13 +66,12 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if (size / items.length < ArrayDeque.FACTOR) {
+        if ((double) size / items.length < ArrayDeque.FACTOR) {
             resize(size / 2);
         }
         size--;
-        T result = items[last];
         last = (last + items.length - 1) % items.length;
-        return result;
+        return items[last];
     }
 
     public T get(int index) {
@@ -76,12 +81,11 @@ public class ArrayDeque<T> {
         return items[(first + items.length + index) % items.length];
     }
 
-    public ArrayDeque<T> of (T ... lst) {
+    public ArrayDeque<T> of(T... lst) {
         ArrayDeque<T> dq = new ArrayDeque<>();
         for (T t: lst) {
             dq.addLast(t);
         }
         return dq;
     }
-
 }
