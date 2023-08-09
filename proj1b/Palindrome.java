@@ -10,19 +10,20 @@ public class Palindrome {
         return returnedItem;
     }
 
-    /** Return true if the given word is a palindrome, and false otherwise. */
-//    public boolean isPalindrome(String word) {
-//        if (word == null) {
-//            return true;
-//        }
-//        Deque<Character> forwardDeque = wordToDeque(word);
-//        String backward = "";
-//        int size = forwardDeque.size();
-//        for (int i = 0; i < size; i++) {
-//            backward += forwardDeque.removeLast();
-//        }
-//        return backward.equals(word);
-//    }
+    /*
+    public boolean isPalindrome(String word) {
+        if (word == null) {
+            return true;
+        }
+        Deque<Character> forwardDeque = wordToDeque(word);
+        String backward = "";
+        int size = forwardDeque.size();
+        for (int i = 0; i < size; i++) {
+            backward += forwardDeque.removeLast();
+        }
+        return backward.equals(word);
+    }
+    */
     /** recursion version */
     public boolean isPalindrome(String word) {
         if (word == null || word.length() <= 1) {
