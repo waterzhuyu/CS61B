@@ -18,20 +18,13 @@ public class TestPalindrome {
 
     @Test
     public void testIsPalindrome() {
-        // null is a palindrome
-        assertTrue(palindrome.isPalindrome(null));
+        assertTrue(palindrome.isPalindrome(""));
+        assertTrue(palindrome.isPalindrome("a"));
+        assertTrue(palindrome.isPalindrome("aba"));
+        assertTrue(palindrome.isPalindrome("aaccbbbccaa"));
 
-        // length one String
-        assertTrue(palindrome.isPalindrome("A"));
-
-        assertFalse(palindrome.isPalindrome("cat"));
-
-        assertTrue(palindrome.isPalindrome("noon"));
-
-        assertTrue(palindrome.isPalindrome("civic"));
-
-
-        assertTrue(palindrome.isPalindrome("level"));
+        assertFalse(palindrome.isPalindrome("ab"));
+        assertFalse(palindrome.isPalindrome("ababba"));
     }
 
     @Test
