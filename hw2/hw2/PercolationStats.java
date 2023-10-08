@@ -21,6 +21,7 @@ public class PercolationStats {
                 p.open(StdRandom.uniform(0, N), StdRandom.uniform(0, N));
                 xt[i]++;
             }
+            xt[i] /= N * N;
         }
         this.mean = StdStats.mean(xt);
         this.stddev = StdStats.stddev(xt);
