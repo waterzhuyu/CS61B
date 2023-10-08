@@ -14,19 +14,18 @@ public class PercolationStats {
         if (N <= 0 || T <= 0) {
             throw new IllegalArgumentException("Arg N and T should greater than 0.\n");
         }
-        int[] xt = new int[T];
+        double[] xt = new double[T];
         for (int i = 0; i < T; i++) {
             Percolation p = pf.make(N);
             while (!p.percolates()) {
-                p.open(StdRandom.uniform(0, N), StdRandom.uniform(0, N));
-                xt[i]++;
+                p.open(StdRandom.uniform(N), StdRandom.uniform(N));
             }
-            xt[i] /= N * N;
+            xt[i] = (double) p.numberOfOpenSites() / N * N;
         }
         this.mean = StdStats.mean(xt);
         this.stddev = StdStats.stddev(xt);
-        this.confidenceLow = this.mean - 1.96 * stddev / Math.sqrt(T);
-        this.confidenceHigh = this.mean + 1.96 * stddev / Math.sqrt(T);
+        this.confidenceLow = this.mean - 1.96 * this.stddev / Math.sqrt(T);
+        this.confidenceHigh = this.mean + 1.96 * this.stddev / Math.sqrt(T);
     }
 
     /**
