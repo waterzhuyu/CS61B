@@ -32,7 +32,7 @@ public class SimpleOomage implements Oomage {
             return red + green + blue;
         } else {
             // Maybe Given three field different weights.
-            return 51*51*red/5 + 51*green/5 + blue/5;
+            return (red/5 << 16) + (green/5 << 8) + (blue/5);
         }
     }
 
