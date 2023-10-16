@@ -174,9 +174,10 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         /* TODO: Your code here! */
         Node min = this.contents[1];
         swap(1, size);
-        this.contents[size] = null;
+        size--;             // NOTE HERE. can't use swap(1, size--) because in swap, we call inBound func
+                            // that use size, when size is changed.
+        this.contents[size+1] = null; // garbage collection
         sink(1);
-        size--;
         return min.myItem;
     }
 
@@ -201,11 +202,12 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
     public void changePriority(T item, double priority) {
         /* TODO: Your code here! */
         for (int i = 1; i < size; i++) {
-            if (this.contents[i].myItem.equals(item)) {
-                this.contents[i].myPriority = priority;
-                swim(i);
-                sink(1);
+            if (!this.contents[i].myItem.equals(item)) {
+                continue;
             }
+            this.contents[i].myPriority = priority;
+            swim(i);
+            sink(1);
         }
         return;
     }
