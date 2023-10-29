@@ -6,10 +6,10 @@ import java.util.Observable;
  * @author Josh Hug
  */
 public abstract class MazeExplorer extends Observable {
-    protected int[] distTo;
-    protected int[] edgeTo;
-    protected boolean[] marked;
-    protected Maze maze;
+    protected int[] distTo;          // Distance to draw over the Maze
+    protected int[] edgeTo;          // Edges to draw on Maze
+    protected boolean[] marked;      // Locations to mark in blue
+    protected Maze maze;             // The maze being solved
 
 
     /**
