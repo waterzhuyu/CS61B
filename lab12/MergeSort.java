@@ -35,7 +35,13 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Queue<Item>>
             makeSingleItemQueues(Queue<Item> items) {
         // Your code here!
-        return null;
+        Queue<Queue<Item>> res = new Queue<>();
+        for (Item item : items) {
+            Queue<Item> member = new Queue<>();
+            member.enqueue(item);
+            res.enqueue(member);
+        }
+        return res;
     }
 
     /**
@@ -54,13 +60,41 @@ public class MergeSort {
     private static <Item extends Comparable> Queue<Item> mergeSortedQueues(
             Queue<Item> q1, Queue<Item> q2) {
         // Your code here!
-        return null;
+        Queue<Item> res = new Queue<>();
+        while (!q1.isEmpty() || !q2.isEmpty()) {
+            Item min = getMin(q1, q2);
+            res.enqueue(min);
+        }
+        return res;
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> mergeSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        int n = items.size();
+        Queue<Queue<Item>> singleQueues = makeSingleItemQueues(items);
+        for (int len = 1; len < n; len *= 2) {
+            for (int cnt = 0; cnt < n / len / 2; cnt++) {
+                Queue<Item> q1 = singleQueues.dequeue();
+                Queue<Item> q2 = singleQueues.dequeue();
+
+                Queue<Item> res = mergeSortedQueues(q1, q2);
+                singleQueues.enqueue(res);
+            }
+        }
+        return singleQueues.dequeue();
+    }
+
+    public static void main(String[] args) {
+        Queue<String> students = new Queue<>();
+        students.enqueue("Alice");
+        students.enqueue("Vanessa");
+        students.enqueue("Ethan");
+        System.out.println(students);
+
+        Queue<String> sortedStudents = mergeSort(students);
+        System.out.println(sortedStudents);
+        System.out.println(students);
     }
 }
